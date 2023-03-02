@@ -2,6 +2,7 @@ require('dotenv').config();
 const cors = require('cors');
 const express = require('express');
 const mongoose = require('mongoose');
+const path = require('path');
 const mongoString = process.env.DATABASE_URL;
 
 mongoose.connect(mongoString);
@@ -21,6 +22,7 @@ app.use(express.json());
 const routes = require('./routes/database.js');
 
 app.use('/api', routes)
+app.use('/static', express.static(path.join(__dirname, 'www')))
 
 app.listen(3000, () => {
     console.log(`Server Started at ${3000}`)
