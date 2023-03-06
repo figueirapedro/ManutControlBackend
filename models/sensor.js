@@ -7,7 +7,7 @@ const dataSchema = new mongoose.Schema({
     },
     metric: {
         required: true,
-        type: Number
+        type: String
     }
 })
 
