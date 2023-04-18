@@ -2,11 +2,15 @@ const mongoose = require('mongoose');
 
 const dataSchema = new mongoose.Schema({
     name: {
-        required: true,
+        required: false,
         type: String
     },
     metric: {
-        required: true,
+        required: false,
+        type: String
+    },
+    time: {
+        required: false,
         type: String
     }
 })
