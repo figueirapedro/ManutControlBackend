@@ -4,6 +4,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
 const mongoString = process.env.DATABASE_URL;
+const PORT = process.env.PORT || 8080;
 
 mongoose.connect(mongoString);
 const database = mongoose.connection;
@@ -16,14 +17,14 @@ database.once('connected', () => {
     console.log('Database Connected');
 })
 const app = express();
-app.use(cors())
 app.use(express.json());
+app.use(cors());
 
 const routes = require('./routes/database.js');
 
-app.use('/api', routes)
-app.use('/static', express.static(path.join(__dirname, 'www')))
+app.use('/api', routes);
+app.use('/static', express.static(path.join(__dirname, 'www')));
 
-app.listen(3000, () => {
-    console.log(`Server Started at ${3000}`)
-})
+app.listen(PORT, () => {
+    console.log(`Server Started at ${PORT}`);
+});

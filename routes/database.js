@@ -6,10 +6,12 @@ const router = express.Router();
 router.post('/post', async (req, res) => {
     const data = new Model({
         name: req.body.name,
-        metric: req.body.metric
+        metric: req.body.metric,
+        time: new Date().toISOString()
     })
 
     try {
+        console.log(req)
         const dataToSave = await data.save();
         res.status(200).json(dataToSave)
     }
