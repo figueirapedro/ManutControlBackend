@@ -7,11 +7,12 @@ router.post('/post', async (req, res) => {
     const data = new Model({
         name: req.body.name,
         metric: req.body.metric,
-        time: new Date().toISOString()
+        machine: req.body.machine,
+        time: new Date().toISOString(),
+        mstime: new Date().getTime()
     })
 
     try {
-        console.log(req)
         const dataToSave = await data.save();
         res.status(200).json(dataToSave)
     }
@@ -71,5 +72,19 @@ router.delete('/delete/:id', async (req, res) => {
         res.status(400).json({ message: error.message })
     }
 })
+
+//Get last X miliseconds rows
+/*
+router.get('/getTime/:mstime', async (req, res) => {
+    try {
+        const mstime = req.params.mstime;
+        const data = await Model.find().where('mstime').gt(new Date().getTime() - mstime);
+        res.json(data)
+    }
+    catch (error) {
+        res.status(500).json({ message: error.message })
+    }
+})
+*/
 
 module.exports = router;

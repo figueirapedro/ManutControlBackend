@@ -10,8 +10,16 @@ const dataSchema = new mongoose.Schema({
         type: String
     },
     time: {
+        required: true,
+        type: String
+    },
+    machine: {
         required: false,
         type: String
+    },
+    mstime: {
+        required: true,
+        type: Number
     }
 })
 
